@@ -5,205 +5,243 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MTA Europe | Преміум Авто з Європи</title>
     <style>
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #000; color: #e0e0e0; line-height: 1.6; }
+        
         header {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x600/111111/ffffff?text=MTA+Europe') center/cover no-repeat;
-            padding: 100px 20px;
+            background-image: url('https://t4.ftcdn.net/jpg/03/12/13/25/360_F_312132508_9KTPGhDOQ2cqYBCHiVlR4p9UvDxdPhkP.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 6rem 0;
             text-align: center;
-            border-bottom: 3px solid #ffcc00;
+            position: relative;
         }
-        header h1 {
-            font-size: 3em;
-            margin: 0;
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
         }
-        header p {
-            font-size: 1.5em;
-        }
+        .logo, .subtitle { position: relative; z-index: 1; }
+        .logo { font-size: 3.5rem; font-weight: bold; color: #ffd700; text-shadow: 0 0 10px rgba(255,215,0,0.5); }
+        .subtitle { font-size: 1.6rem; opacity: 0.9; }
+
         nav {
+            background: #111;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+        .nav-links {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: center;
-            background-color: #111111;
-            padding: 15px;
+            gap: 2.5rem;
         }
-        nav a {
-            color: #ffffff;
+        .nav-links a {
+            color: #ffd700;
             text-decoration: none;
-            margin: 0 20px;
-            font-size: 1.3em;
+            font-weight: 600;
+            transition: color 0.3s;
         }
-        nav a:hover {
-            color: #ffcc00;
+        .nav-links a:hover { color: #fff; }
+
+        main { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+
+        section { margin-bottom: 80px; }
+        h2 { text-align: center; margin-bottom: 40px; color: #ffd700; font-size: 2.2rem; }
+
+        #about p {
+            text-align: center;
+            font-size: 1.2rem;
+            max-width: 900px;
+            margin: 20px auto;
+            line-height: 1.8;
         }
-        section {
-            padding: 60px 20px;
+
+        .catalog {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        .car {
+            text-align: center;
+            flex: 1 1 300px;
+            max-width: 400px;
+        }
+        .car img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(255,215,0,0.2);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .car img:hover { transform: scale(1.05); }
+        .car-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-top: 20px;
+        }
+
+        #videos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        .video-item {
+            flex: 1 1 300px;
+            max-width: 560px;
             text-align: center;
         }
-        #about {
-            background-color: #0a0a0a;
-        }
-        .car-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .car-card {
-            background-color: #111111;
-            border: 1px solid #333333;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
-            transition: transform 0.4s;
-        }
-        .car-card:hover {
-            transform: translateY(-10px);
-        }
-        .car-card h3 {
-            color: #ffcc00;
-            margin-bottom: 10px;
-        }
-        .car-card img {
+        .video-item h3 { color: #ffd700; margin-bottom: 15px; }
+        iframe {
             width: 100%;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            height: 315px;
+            border: 2px solid #ffd700;
+            border-radius: 8px;
         }
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 10px;
-            margin-top: 15px;
+
+        #specs {
+            background: #111;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(255,215,0,0.1);
         }
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        .spec-section {
+            margin-bottom: 50px;
         }
+        .spec-section h3 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        #contact {
+            text-align: center;
+        }
+        #contact p { font-size: 1.3rem; margin: 20px 0; }
+        .social a {
+            color: #0088cc;
+            font-size: 1.4rem;
+            text-decoration: none;
+        }
+
         footer {
-            background-color: #111111;
-            padding: 40px 20px;
+            background: #111;
+            color: #777;
             text-align: center;
-            border-top: 3px solid #ffcc00;
+            padding: 40px 20px;
+            border-top: 1px solid #333;
         }
-        .contact a {
-            color: #ffcc00;
-            text-decoration: none;
-            font-size: 1.4em;
-        }
-        .contact a:hover {
-            text-decoration: underline;
+
+        @media (max-width: 768px) {
+            .catalog { flex-direction: column; align-items: center; }
+            .logo { font-size: 2.8rem; }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>MTA Europe</h1>
-        <p>Преміум автомобілі з Європи: Toyota, Mercedes, Audi</p>
-        <p>Доставка по Україні • Повна перевірка • Гарантія</p>
+        <div class="logo">MTA Europe</div>
+        <div class="subtitle">Преміум автомобілі з Європи та США</div>
     </header>
+
     <nav>
-        <a href="#about">Про нас</a>
-        <a href="#cars">Автомобілі</a>
-        <a href="#contact">Контакти</a>
+        <div class="nav-links">
+            <a href="#about">Про нас</a>
+            <a href="#cars">Автомобілі</a>
+            <a href="#contact">Контакти</a>
+        </div>
     </nav>
 
-    <section id="about">
-        <h2>Про нас</h2>
-        <p>Вітаємо в MTA Europe! Ми спеціалізуємося на імпорті та продажу преміум автомобілів з Європи та США. У нашому асортименті — Toyota, Mercedes-Benz, Audi та інші марки в ідеальному стані. Кожне авто проходить повну перевірку, має підтверджений пробіг та юридичну чистоту. Швидка доставка, вигідні ціни, допомога з оформленням.</p>
-        <p>Слідкуйте за новими надходженнями в нашому Telegram-каналі!</p>
-    </section>
+    <main>
+        <section id="about">
+            <h2>Про нас</h2>
+            <p>Наша компанія спеціалізується на продажу нових та вживаних автомобілів Mercedes-Benz, Toyota та Audi (2015–2025 років випуску) безпосередньо з Європи.</p>
+            <p>Автомобілі постачаються під ключ — готові до реєстрації та експлуатації в Україні.</p>
+            <p>У ціну входить повне розтаможення автомобіля.</p>
+            <p>За необхідності надішлемо повний пакет документів на авто для ознайомлення.</p>
+            <p>Якщо автомобіль має пошкодження, ціна автоматично знижується. За бажанням покупця ремонт виконується:<br>
+            на офіційному СТО автоконцерну в країні збірки (оригінальні запчастини та гарантія виробника),<br>
+            або вже в Україні у нового власника.</p>
+            <p>У випадку, якщо покупець обирає ремонт на СТО компанії, всі процеси відновлення (фото, відео, звіти) будуть надсилатися покупцеві для перевірки та контролю.</p>
+            <p>Якісні європейські авто за вигідними цінами з прозорими умовами!</p>
+        </section>
 
-    <section id="cars">
-        <h2>Доступні Автомобілі</h2>
-        <p>Актуальні пропозиції з каналу MTA Europe. Для деталей та фото пишіть в Telegram.</p>
-        
-        <div class="car-grid">
-            <div class="car-card">
-                <h3>Toyota Camry (приклад преміум моделі)</h3>
+        <section id="cars">
+            <h2>Доступні Автомобілі</h2>
+            <div class="catalog">
+                <div class="car">
+                    <a href="#mercedes-specs"><img src="https://images.pexels.com/photos/10358225/pexels-photo-10358225.jpeg" alt="Mercedes-Benz S-Class білий"></a>
+                    <div class="car-price">20 000 $</div>
+                </div>
 
-<grok-card data-id="587aab" data-type="image_card"  data-arg-size="LARGE" ></grok-card>
+                <div class="car">
+                    <a href="#toyota-specs"><img src="https://di-uploads-pod14.dealerinspire.com/oaklawntoyota/uploads/2020/01/2020-Toyota-Camry-Midnight-Black-Metallic.png" alt="Toyota Camry 2020 чорна"></a>
+                    <div class="car-price">22 000 $</div>
+                </div>
 
-
-
-<grok-card data-id="386c12" data-type="image_card"  data-arg-size="LARGE" ></grok-card>
-
-
-
-<grok-card data-id="8b5981" data-type="image_card"  data-arg-size="LARGE" ></grok-card>
-
-
-
-<grok-card data-id="672056" data-type="image_card"  data-arg-size="LARGE" ></grok-card>
-
-                <p>Сучасний дизайн, надійність, комфорт. Ідеальний седан для міста та траси.</p>
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/GGHjC1R1VPo" title="Toyota Camry Night Drive" frameborder="0" allowfullscreen></iframe>
+                <div class="car">
+                    <a href="#audi-specs"><img src="https://www.netcarshow.com/Audi-A8-2022-Front.aa3ea746.jpg" alt="Audi A8 2022 сіра"></a>
+                    <div class="car-price">27 000 $</div>
                 </div>
             </div>
+        </section>
 
-            <div class="car-card">
-                <h3>Mercedes-Benz E-Class / S-Class</h3>
-
-<grok-card data-id="40689b" data-type="image_card"  data-arg-size="LARGE" ></grok-card>
-
-
-
-<grok-card data-id="b8c68c" data-type="image_card"  data-arg-size="LARGE" ></grok-card>
-
-
-
-<grok-card data-id="60a194" data-type="image_card"  data-arg-size="LARGE" ></grok-card>
-
-
-
-<grok-card data-id="eefcd1" data-type="image_card"  data-arg-size="LARGE" ></grok-card>
-
-                <p>Люкс та технології найвищого рівня. Комфорт, який не має аналогів.</p>
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/jlTnxFtj0wk" title="Mercedes Night Drive" frameborder="0" allowfullscreen></iframe>
-                </div>
+        <section id="videos">
+            <h2>Презентації Автомобілів</h2>
+            <div class="video-item">
+                <h3>Mercedes-Benz S-Class</h3>
+                <iframe src="https://www.youtube.com/embed/V8wIrkpi64E" allowfullscreen></iframe>
             </div>
-
-            <div class="car-card">
-                <h3>Audi A6 / A8</h3>
-
-<grok-card data-id="f8188c" data-type="image_card"  data-arg-size="LARGE" ></grok-card>
-
-
-
-<grok-card data-id="651a45" data-type="image_card"  data-arg-size="LARGE" ></grok-card>
-
-
-
-<grok-card data-id="e94dd5" data-type="image_card"  data-arg-size="LARGE" ></grok-card>
-
-
-
-<grok-card data-id="ee0077" data-type="image_card"  data-arg-size="LARGE" ></grok-card>
-
-                <p>Спортивність, інновації та повний привід quattro.</p>
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/KMKMSgFYZts" title="Audi Night Drive" frameborder="0" allowfullscreen></iframe>
-                </div>
+            <div class="video-item">
+                <h3>Toyota Camry 2020</h3>
+                <iframe src="https://www.youtube.com/embed/-7sMcYdkcAQ" allowfullscreen></iframe>
             </div>
-        </div>
-    </section>
+            <div class="video-item">
+                <h3>Audi A8 2022</h3>
+                <iframe src="https://www.youtube.com/embed/6z1qk-OItes" allowfullscreen></iframe>
+            </div>
+        </section>
 
-    <footer id="contact">
-        <h2>Контакти</h2>
-        <p class="contact">Телефон: <a href="tel:0630663416">063 066 34 16</a></p>
-        <p class="contact">Telegram канал: <a href="https://t.me/MTAEurope" target="_blank">@MTAEurope</a></p>
-        <p>Пишіть для консультації, актуальних цін та нових надходжень!</p>
+        <section id="specs">
+            <h2>Характеристики Автомобілів</h2>
+            <div id="mercedes-specs" class="spec-section">
+                <h3>Mercedes-Benz S-Class білий</h3>
+                <p>Потужний двигун 4.0 л V8, 496 к.с., розгін 0-100 км/год за 4.4 с, повний привід, преміум інтер'єр з шкірою, адаптивна підвіска, повна LED-оптика. Ідеальний для комфорту та статусу.</p>
+            </div>
+            <div id="toyota-specs" class="spec-section">
+                <h3>Toyota Camry 2020 чорна</h3>
+                <p>Двигун 2.5 л, 203 к.с., автоматична коробка, передній привід, витрата 7 л/100 км, система безпеки Toyota Safety Sense, мультимедіа з Apple CarPlay. Надійний седан для щоденного використання.</p>
+            </div>
+            <div id="audi-specs" class="spec-section">
+                <h3>Audi A8 2022 сіра</h3>
+                <p>Двигун 3.0 л TFSI, 340 к.с., Quattro повний привід, 8-ступінчаста АКПП, адаптивні фари Matrix LED, віртуальна панель приладів, масажні сидіння. Люксовий седан з передовими технологіями.</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Контакти</h2>
+            <p>Телефон: +380 63 066 34 16</p>
+            <p>Зв'яжіться з нами для консультації та актуальних пропозицій!</p>
+            <div class="social">
+                <a href="https://t.me/mta_europe" target="_blank">Telegram-канал MTA Europe</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 MTA Europe. Всі права захищено.</p>
+        <p>Доставка по всій Україні | Повна перевірка авто | Юридична чистота</p>
     </footer>
 </body>
 </html>
